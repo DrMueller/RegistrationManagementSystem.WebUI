@@ -1,0 +1,58 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "paths": {
+      "@drmueller/language-extensions": [
+        "dist/drmueller/language-extensions"
+      ],
+      "@drmueller/language-extensions/*": [
+        "dist/drmueller/language-extensions/*"
+      ],
+      "@drmueller/base-services": [
+        "dist/drmueller/base-services"
+      ],
+      "@drmueller/base-services/*": [
+        "dist/drmueller/base-services/*"
+      ],
+      "@drmueller/app-navigation": [
+        "dist/drmueller/app-navigation"
+      ],
+      "@drmueller/app-navigation/*": [
+        "dist/drmueller/app-navigation/*"
+      ],
+      "@drmueller/breadcrumbs": [
+        "dist/drmueller/breadcrumbs"
+      ],
+      "@drmueller/breadcrumbs/*": [
+        "dist/drmueller/breadcrumbs/*"
+      ],
+      "data-access": [
+        "dist/data-access"
+      ],
+      "data-access/*": [
+        "dist/data-access/*"
+      ],
+      "@drmueller/data-access": [
+        "dist/drmueller/data-access"
+      ],
+      "@drmueller/data-access/*": [
+        "dist/drmueller/data-access/*"
+      ]
+    }
+  }
+}
