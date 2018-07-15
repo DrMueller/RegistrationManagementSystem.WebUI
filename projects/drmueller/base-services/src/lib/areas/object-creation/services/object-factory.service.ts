@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { CTOR_PROP_KEY_PREFIX } from '../decorators';
-import { IParameterlessConstructor } from '@drmueller/language-extensions/drmueller-language-extensions';
+import { IParameterlessConstructor } from 'projects/drmueller/language-extensions/src/public_api';
 
 @Injectable()
 export class ObjectFactoryService {

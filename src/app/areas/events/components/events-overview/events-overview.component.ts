@@ -2,10 +2,10 @@ import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 
-import { NavigationService, EventOverviewDataService } from '../../app-services';
+import { EventsNavigationService, EventOverviewDataService } from '../../app-services';
 import { EventOverviewEntryDto } from '../../dtos';
 import { EventsOverviewDataSource } from './events-overview-datasource';
-import { EmptyDataSource } from 'src/app/infrastructure/data-sources';
+import { EmptyDataSource } from '../../../../infrastructure/data-sources';
 
 @Component({
   selector: 'app-events-overview',
@@ -20,8 +20,10 @@ export class EventsOverviewComponent implements OnInit {
   public dataSource: DataSource<EventOverviewEntryDto> = new EmptyDataSource<EventOverviewEntryDto>();
   private selection = new SelectionModel<EventOverviewEntryDto>(true);
 
+  private overviewEntries: EventOverviewEntryDto[];
+
   public constructor(
-    private navigationService: NavigationService,
+    private navigationService: EventsNavigationService,
     private dataService: EventOverviewDataService
   ) {
   }
@@ -46,12 +48,20 @@ export class EventsOverviewComponent implements OnInit {
     return this.selection.isSelected(row);
   }
 
-  public deleteSelectedEvent(): void {
+  public async deleteSelectedEventsAsync(): Promise<void> {
+    const deletePromises = this.selection.selected.map(dto => {
+      const indx = this.overviewEntries.indexOf(dto);
+      this.overviewEntries.splice(indx, 1);
+      return this.dataService.deleteEventAsync(dto.id);
+    });
 
+    await Promise.all(deletePromises);
+    this.dataSource = new EventsOverviewDataSource(this.paginator, this.sort, this.overviewEntries);
+    this.selection.clear();
   }
 
   public async ngOnInit(): Promise<void> {
-    const overviewEntries = await this.dataService.loadOverviewEntriesAsync();
-    this.dataSource = new EventsOverviewDataSource(this.paginator, this.sort, overviewEntries);
+    this.overviewEntries = await this.dataService.loadOverviewEntriesAsync();
+    this.dataSource = new EventsOverviewDataSource(this.paginator, this.sort, this.overviewEntries);
   }
 }

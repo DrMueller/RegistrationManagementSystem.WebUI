@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class NavigationService {
+export class EventsNavigationService {
   constructor(private router: Router) { }
 
   public navigateToOverview(): void {

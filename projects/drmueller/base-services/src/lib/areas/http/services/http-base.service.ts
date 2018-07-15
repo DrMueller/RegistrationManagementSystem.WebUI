@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { IParameterlessConstructor } from '@drmueller/language-extensions/drmueller-language-extensions';
+import { IParameterlessConstructor } from 'projects/drmueller/language-extensions/src/public_api';
 
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
@@ -23,9 +23,9 @@ export abstract class HttpBaseService {
     const requestOptions = HttpBaseServant.createOptions();
     const array = await this.processResponse(this.httpClient.get<T[]>(completeUrl, requestOptions));
 
-    const arrayResult = array.map(item => {
+    const arrayResult = array.map<T>(item => {
       const newObj = this.objectFactoryService.create(item, ctor);
-      return newObj;
+      return <T>newObj;
     });
 
     return arrayResult;
@@ -84,7 +84,7 @@ export abstract class HttpBaseService {
     let mappedResult = response;
 
     if (ctor) {
-      mappedResult = mappedResult.pipe(
+      mappedResult = mappedResult.pipe<T>(
         map(f => {
           const newObj = this.objectFactoryService.create(f, ctor);
           return newObj;

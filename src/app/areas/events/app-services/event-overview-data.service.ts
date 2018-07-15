@@ -20,4 +20,8 @@ export class EventOverviewDataService {
         event.registrations.length);
     });
   }
+
+  public async deleteEventAsync(id: string): Promise<void> {
+    await this.eventRepository.deleteAsync(id);
+  }
 }

@@ -41,12 +41,6 @@
       "@drmueller/breadcrumbs/*": [
         "dist/drmueller/breadcrumbs/*"
       ],
-      "data-access": [
-        "dist/data-access"
-      ],
-      "data-access/*": [
-        "dist/data-access/*"
-      ],
       "@drmueller/data-access": [
         "dist/drmueller/data-access"
       ],

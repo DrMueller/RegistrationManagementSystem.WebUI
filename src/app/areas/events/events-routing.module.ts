@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import * as components from './components';
+import * as resolvers from './app-services/resolvers';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
       },
       {
         path: ':eventId',
-        component: components.EventEditComponent
+        component: components.EventEditComponent,
+        resolve: { eventEditDto: resolvers.EventEditResolver }
       }
     ]
   }];

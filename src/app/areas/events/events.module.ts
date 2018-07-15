@@ -1,22 +1,21 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 
-import { EventsRoutingModule } from './events-routing.module';
-
-import { MaterialModule } from '../../infrastructure/shell/material';
+import { RxFormsModule } from 'projects/drmueller/rx-forms/src/public_api';
 
 import * as components from './components';
+import { MaterialModule } from '../../infrastructure/shell/material';
 import * as appServices from './app-services';
-import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
+import * as formBuilding from './app-services/form-building';
+import * as resolvers from './app-services/resolvers';
+import { EventsRoutingModule } from './events-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     EventsRoutingModule,
     MaterialModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
+    RxFormsModule
   ],
   declarations: [
     components.EventEditComponent,
@@ -24,7 +23,11 @@ import { MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/mate
     components.EventsOverviewComponent
   ],
   providers: [
-    appServices.NavigationService
+    appServices.EventsNavigationService,
+    appServices.EventEditService,
+    appServices.EventOverviewDataService,
+    formBuilding.EventEditFormBuilderService,
+    resolvers.EventEditResolver
   ]
 })
 

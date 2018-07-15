@@ -1,3 +1,20 @@
-<p>
-  event-edit works!
-</p>
+<mat-card>
+  <mat-card-title>Actions</mat-card-title>
+  <mat-card-content>
+    <button mat-button [disabled]="!dataForm.isFormValid" (click)="saveEventAsync()" color="primary">Save</button>
+    <button mat-button color="accent" (click)="cancelEditing()">Cancel</button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-title>Events</mat-card-title>
+  <mat-card-content>
+    <form class="example-form" [formGroup]="dataForm.formGroup">
+      <drm-form-control-with-validation [formGroup]="dataForm.formGroup" [validatedControl]="dataForm.getValidatedControl('eventName')">
+        <mat-form-field class="example-full-width">
+          <input matInput type="text" class="form-control" placeholder="Enter Event name" formControlName="eventName">
+        </mat-form-field>
+      </drm-form-control-with-validation>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,5 @@
+<div class="validation-display-list" *ngFor="let validationError of validatedControl.errorContainer.validationErrors">
+  <mat-error>
+    {{ validationError.errorMessage }}
+  </mat-error>
+</div>

@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DataAccessModule } from '../../../shared-domain/data-access';
 import { BaseServicesModule } from 'projects/drmueller/base-services/src/public_api';
+import { RxFormsModule } from 'projects/drmueller/rx-forms/src/public_api';
 
 import { AppNavigationModule } from '../app-navigation';
 import { MaterialModule } from '../material';
@@ -27,7 +28,8 @@ import { CoreServicesModule } from '../../core-services';
     CoreServicesModule.forRoot(),
     DataAccessModule.forRoot(),
     FlexLayoutModule,
-    MaterialModule
+    MaterialModule,
+    RxFormsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
