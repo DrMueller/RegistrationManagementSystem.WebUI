@@ -46,6 +46,30 @@
       ],
       "@drmueller/data-access/*": [
         "dist/drmueller/data-access/*"
+      ],
+      "ng-mat-extensions": [
+        "dist/ng-mat-extensions"
+      ],
+      "ng-mat-extensions/*": [
+        "dist/ng-mat-extensions/*"
+      ],
+      "@drmueller/ng-mat-extensions": [
+        "dist/drmueller/ng-mat-extensions"
+      ],
+      "@drmueller/ng-mat-extensions/*": [
+        "dist/drmueller/ng-mat-extensions/*"
+      ],
+      "error-handling": [
+        "dist/error-handling"
+      ],
+      "error-handling/*": [
+        "dist/error-handling/*"
+      ],
+      "@drmueller/error-handling": [
+        "dist/drmueller/error-handling"
+      ],
+      "@drmueller/error-handling/*": [
+        "dist/drmueller/error-handling/*"
       ]
     }
   }

@@ -1,6 +1,6 @@
 /// <reference path="../../../../../../../../node_modules/reflect-metadata/Reflect.d.ts" />.
 
-import { IParameterlessConstructor } from 'projects/drmueller/language-extensions/src/public_api';
+import { IParameterlessConstructor } from '../../../../../../language-extensions/src/public_api';
 
 export const CTOR_PROP_KEY_PREFIX = 'ConstructableProperty';
 

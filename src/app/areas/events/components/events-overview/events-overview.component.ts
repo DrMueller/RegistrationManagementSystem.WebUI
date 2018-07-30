@@ -4,8 +4,10 @@ import { MatPaginator, MatSort } from '@angular/material';
 
 import { EventsNavigationService, EventOverviewDataService } from '../../app-services';
 import { EventOverviewEntryDto } from '../../dtos';
-import { EventsOverviewDataSource } from './events-overview-datasource';
-import { EmptyDataSource } from '../../../../infrastructure/data-sources';
+import { ColumnDefinitions } from 'projects/drmueller/ng-mat-extensions/src/public_api';
+
+import { EventsOverviewColumnDefinitionsBuilderService } from '../../app-services/table-building';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-events-overview',
@@ -14,54 +16,49 @@ import { EmptyDataSource } from '../../../../infrastructure/data-sources';
 })
 
 export class EventsOverviewComponent implements OnInit {
-  public displayedColumns = ['eventName', 'registrationsCount'];
-  @ViewChild(MatPaginator) public paginator: MatPaginator;
-  @ViewChild(MatSort) public sort: MatSort;
-  public dataSource: DataSource<EventOverviewEntryDto> = new EmptyDataSource<EventOverviewEntryDto>();
-  private selection = new SelectionModel<EventOverviewEntryDto>(true);
-
-  private overviewEntries: EventOverviewEntryDto[];
+  public columnDefinitions: ColumnDefinitions;
+  public data: EventOverviewEntryDto[] = [];
+  public selectedItems: EventOverviewEntryDto[] = [];
 
   public constructor(
     private navigationService: EventsNavigationService,
-    private dataService: EventOverviewDataService
-  ) {
+    private dataService: EventOverviewDataService,
+    private colDefBuilder: EventsOverviewColumnDefinitionsBuilderService) {
   }
 
-  public get isEventSelected(): boolean {
-    return this.selection.selected.length > 0;
+  public get areEventsSelected(): boolean {
+    return this.data && this.data.length > 0;
   }
 
   public editSelectedEvent(): void {
-    this.navigationService.navigateToEdit(this.selection.selected[0].id);
+    this.navigationService.navigateToEdit(this.selectedItems[0].id);
   }
 
-  public toggleSelection(row: EventOverviewEntryDto): void {
-    this.selection.toggle(row);
+  public rowSelectionChanged(selectedItems: EventOverviewEntryDto[]): void {
+    this.selectedItems = selectedItems;
   }
 
   public createEvent(): void {
     this.navigationService.navigateToEdit('-1');
   }
 
-  public isRowSelected(row: EventOverviewEntryDto): boolean {
-    return this.selection.isSelected(row);
-  }
-
   public async deleteSelectedEventsAsync(): Promise<void> {
-    const deletePromises = this.selection.selected.map(dto => {
-      const indx = this.overviewEntries.indexOf(dto);
-      this.overviewEntries.splice(indx, 1);
+    const deletePromises = this.selectedItems.map(dto => {
+      const indx = this.selectedItems.indexOf(dto);
+      this.selectedItems.splice(indx, 1);
+
+      debugger;
+      const indx2 = this.data.indexOf(dto);
+      this.data.splice(indx2, 1);
+
       return this.dataService.deleteEventAsync(dto.id);
     });
 
     await Promise.all(deletePromises);
-    this.dataSource = new EventsOverviewDataSource(this.paginator, this.sort, this.overviewEntries);
-    this.selection.clear();
   }
 
   public async ngOnInit(): Promise<void> {
-    this.overviewEntries = await this.dataService.loadOverviewEntriesAsync();
-    this.dataSource = new EventsOverviewDataSource(this.paginator, this.sort, this.overviewEntries);
+    this.columnDefinitions = this.colDefBuilder.buildDefinitions();
+    this.data = await this.dataService.loadOverviewEntriesAsync();
   }
 }

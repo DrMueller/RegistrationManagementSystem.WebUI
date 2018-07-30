@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { IParameterlessConstructor } from 'projects/drmueller/language-extensions/src/public_api';
+import { IParameterlessConstructor } from '../../../../../../language-extensions/src/public_api';
 
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';

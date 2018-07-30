@@ -1,10 +1,16 @@
 import { Component } from '@angular/core';
+import { fadeAnimation } from './animations';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [fadeAnimation]
 })
 
 export class AppComponent {
+
+  public getRouterOutletState(outlet: any): string {
+    return outlet.isActivated ? outlet.activatedRoute : '';
+  }
 }
