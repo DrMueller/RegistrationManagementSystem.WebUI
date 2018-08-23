@@ -70,6 +70,12 @@
       ],
       "@drmueller/error-handling/*": [
         "dist/drmueller/error-handling/*"
+      ],
+      "@drmueller/security": [
+        "dist/drmueller/security"
+      ],
+      "@drmueller/security/*": [
+        "dist/drmueller/security/*"
       ]
     }
   }

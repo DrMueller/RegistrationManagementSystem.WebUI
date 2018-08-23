@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+import { SecurityUserService } from 'projects/drmueller/security/src/public_api';
+import { EnvironmentService } from 'src/app/infrastructure/core-services/environment';
+
 import { fadeAnimation } from './animations';
 
 @Component({
@@ -8,9 +12,18 @@ import { fadeAnimation } from './animations';
   animations: [fadeAnimation]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
+  public constructor(
+    private securityUserService: SecurityUserService,
+    environmentService: EnvironmentService) {
+    this.securityUserService.initialize(environmentService.adalConfiguration);
+  }
 
   public getRouterOutletState(outlet: any): string {
     return outlet.isActivated ? outlet.activatedRoute : '';
+  }
+
+  public ngOnInit(): void {
+    this.securityUserService.handleCallback();
   }
 }

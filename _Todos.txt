@@ -5,3 +5,4 @@
 # UI
 - IsActive in Sidenav
 - Verwendung der Accenz Farben
+- Darkmode

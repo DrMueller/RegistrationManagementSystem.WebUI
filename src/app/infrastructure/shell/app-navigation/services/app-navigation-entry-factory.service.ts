@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AppNavigationEntry } from '../models';
+import { RouteAuthorizationService } from 'projects/drmueller/security/src/lib/areas';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppNavigationEntryFactoryService {
-  public constructor() { }
+  public constructor(private routeAuthorizationService: RouteAuthorizationService) { }
 
   public createEntries(): AppNavigationEntry[] {
     const result = new Array<AppNavigationEntry>();
@@ -19,7 +20,6 @@ export class AppNavigationEntryFactoryService {
   }
 
   private createWithSecurity(displayText: string, route: string): AppNavigationEntry {
-    // TODO
-    return new AppNavigationEntry(displayText, route, true);
+    return new AppNavigationEntry(displayText, route, this.routeAuthorizationService.checkIfUserIsAuthorizedForRoute(route));
   }
 }

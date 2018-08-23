@@ -8,5 +8,20 @@
 
 .mat-toolbar.mat-primary {
   position: sticky;
-  // top: 0;
+  top: 0;
+}
+
+a.disabled {
+  pointer-events: none;
+  color: lightgrey;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.usermenu {
+  margin-left: auto;
 }

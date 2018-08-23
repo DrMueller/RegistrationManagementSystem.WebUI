@@ -1,12 +1,16 @@
-import { NgModule } from '@angular/core';
+import { LayoutModule } from '@angular/cdk/layout';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material';
+import { NgModule } from '@angular/core';
+import {
+  MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule
+} from '@angular/material';
 import { RouterModule } from '@angular/router';
+
+import { SecurityModule } from 'projects/drmueller/security/src/public_api';
 
 import * as components from './components';
 import { AppNavigationComponent } from './components/app-navigation/app-navigation.component';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MaterialModule } from '../material';
 
 @NgModule({
   imports: [
@@ -18,7 +22,8 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    SecurityModule
   ],
   declarations: [
     components.AppNavigationComponent,

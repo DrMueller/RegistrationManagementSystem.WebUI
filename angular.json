@@ -23,7 +23,6 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
@@ -86,7 +85,6 @@
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ]
           }
@@ -292,46 +290,6 @@
         }
       }
     },
-    "error-handling": {
-      "root": "projects/error-handling",
-      "sourceRoot": "projects/error-handling/src",
-      "projectType": "library",
-      "prefix": "drm",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/error-handling/tsconfig.lib.json",
-            "project": "projects/error-handling/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/error-handling/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/error-handling/src/test.ts",
-            "tsConfig": "projects/error-handling/tsconfig.spec.json",
-            "karmaConfig": "projects/error-handling/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/error-handling/tsconfig.lib.json",
-              "projects/error-handling/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "@drmueller/error-handling": {
       "root": "projects/drmueller/error-handling",
       "sourceRoot": "projects/drmueller/error-handling/src",
@@ -364,6 +322,46 @@
             "tsConfig": [
               "projects/drmueller/error-handling/tsconfig.lib.json",
               "projects/drmueller/error-handling/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "@drmueller/security": {
+      "root": "projects/drmueller/security",
+      "sourceRoot": "projects/drmueller/security/src",
+      "projectType": "library",
+      "prefix": "drm",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/drmueller/security/tsconfig.lib.json",
+            "project": "projects/drmueller/security/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/drmueller/security/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/drmueller/security/src/test.ts",
+            "tsConfig": "projects/drmueller/security/tsconfig.spec.json",
+            "karmaConfig": "projects/drmueller/security/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/drmueller/security/tsconfig.lib.json",
+              "projects/drmueller/security/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

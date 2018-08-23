@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, Input, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
-import { MatPaginator, MatSort, MatTable, Sort } from '@angular/material';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { MatPaginator, MatTable, Sort } from '@angular/material';
 
 import { ColumnDefinitions } from '../../models';
 import { TableSortingService } from '../../services';
@@ -10,12 +10,10 @@ import { TableSortingService } from '../../services';
   templateUrl: './mat-table.component.html',
   styleUrls: ['./mat-table.component.scss']
 })
-export class MatTableComponent<T> implements OnInit {
-
-  // PAGING AUCH
-  @Output() public selectionChanged = new EventEmitter<T[]>();
+export class MatTableComponent<T> {
 
   @Input() public columnDefinitions: ColumnDefinitions;
+  @Output() public selectionChanged = new EventEmitter<T[]>();
   @ViewChild(MatPaginator) public paginator: MatPaginator;
   @ViewChild(MatTable) public matTable: MatTable<T>;
 
@@ -30,6 +28,17 @@ export class MatTableComponent<T> implements OnInit {
     if (this.matTable) {
       this.matTable.renderRows();
     }
+  }
+
+  public deleteSelectedEntries(): void {
+    this.selection.selected.forEach(dto => {
+      const dtoIndex = this.data.indexOf(dto);
+      this.data.splice(dtoIndex, 1);
+    });
+
+    this.selection.clear();
+    this.selectionChanged.emit(this.selection.selected);
+    this.renderRows();
   }
 
   public get data(): T[] {
@@ -48,16 +57,17 @@ export class MatTableComponent<T> implements OnInit {
     return this.selection.isSelected(row);
   }
 
-  public ngOnInit() {
-  }
-
   public sortingChanged(sort: Sort): void {
     this.data = this.sortingService.sortEntries(this.data, sort, this.columnDefinitions);
-    this.matTable.renderRows();
+    this.renderRows();
   }
 
   public toggleRowSelection(row: T): void {
     this.selection.toggle(row);
     this.selectionChanged.emit(this.selection.selected);
+  }
+
+  private renderRows(): void {
+    this.matTable.renderRows();
   }
 }
