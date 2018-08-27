@@ -8,15 +8,18 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-libs": "ng build @drmueller/language-extensions && ng build @drmueller/base-services && ng build @drmueller/breadcrumbs",
-    "build_lib": "ng build --prod @drmueller/language-extensions",
+    "build-libs": "ng build @drmueller/language-extensions && ng build @drmueller/base-services && ng build ",
     "npm_pack": "cd dist/drmueller/language-extensions && npm pack",
     "package": "npm run build_lib && npm run npm_pack",
     "publish": "cd dist/drmueller/language-extensions && npm publish drmueller-language-extensions-0.0.1.tgz --access public",
-    "libs-ut-headless": "npm run uth-lang-ext && npm run uth-breadcrumbs",
+    "libs-ut-headless": "npm run uth-base-services && npm run uth-data-access && npm uth-error-handling && npm uth-language-extension && npm uth-mat-extensions && npm uth-rx-forms && npm uth-security",
     "uth-base-services": "ng test @drmueller/base-services --browsers=ChromeHeadless --watch=false",
-    "uth-lang-ext": "ng test @drmueller/language-extensions --browsers=ChromeHeadless --watch=false",
-    "uth-breadcrumbs": "ng test @drmueller/breadcrumbs --browsers=ChromeHeadless --watch=false"
+    "uth-data-access": "ng test @drmueller/data-access --browsers=ChromeHeadless --watch=false",
+    "uth-error-handling": "ng test @drmueller/error-handling --browsers=ChromeHeadless --watch=false",
+    "uth-language-extensions": "ng test @drmueller/language-extensions --browsers=ChromeHeadless --watch=false",
+    "uth-mat-extensions": "ng test @drmueller/ng-mat-extensions --browsers=ChromeHeadless --watch=false",
+    "uth-rx-forms": "ng test @drmueller/rx-forms --browsers=ChromeHeadless --watch=false",
+    "uth-security": "ng test @drmueller/security --browsers=ChromeHeadless --watch=false"
   },
   "private": true,
   "dependencies": {
