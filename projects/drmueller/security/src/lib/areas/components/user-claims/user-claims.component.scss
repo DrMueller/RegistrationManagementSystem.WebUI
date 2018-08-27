@@ -1,0 +1,20 @@
+@import '_variables';
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-columns {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.claims-header {
+ text-align: left; 
+}
+
+.claims-value-type {
+  margin-right: 20px;
+}

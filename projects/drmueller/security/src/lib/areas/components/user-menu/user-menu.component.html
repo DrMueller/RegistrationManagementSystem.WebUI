@@ -1,0 +1,13 @@
+<div>
+  <button mat-button color="accent" [matMenuTriggerFor]="menu">{{ securityUser.userName }}</button>
+  <mat-menu #menu="matMenu">
+    <ng-container *ngIf="!securityUser.isAuthenticated">
+      <button mat-menu-item (click)="logIn()">Log In</button>
+    </ng-container>
+
+    <ng-container *ngIf="securityUser.isAuthenticated">
+      <button mat-menu-item (click)="showClaims()">Claims</button>
+      <button mat-menu-item (click)="logOut()">Log Out</button>
+    </ng-container>
+  </mat-menu>
+</div>

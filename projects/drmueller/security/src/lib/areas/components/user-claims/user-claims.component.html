@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>
+  Claims of {{ securityUser.userName }}
+</h1>
+
+<div class="flex-columns">
+  <div mat-dialog-content>
+    <table>
+      <tr>
+        <th class="claims-header">Type</th>
+        <th class="claims-header">Value</th>
+      </tr>
+      <ng-container *ngFor="let claim of securityUser.claims">
+        <tr>
+          <td>
+            <span class="claims-value-type">
+              {{ claim.claimType }}
+            </span>
+          </td>
+          <td>
+            {{ claim.value }}
+          </td>
+        </tr>
+      </ng-container>
+    </table>
+  </div>
+
+  <div class="actions">
+    <div mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="true" cdkFocusInitial>OK</button>
+    </div>
+  </div>
+</div>
