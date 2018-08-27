@@ -1,6 +1,6 @@
 function buildLibrary([String] $libraryName) {
     Write-Host 'Building' $libraryName
-    # npm run ng build --prod $libraryName # https://github.com/angular/angular-cli/issues/5955
+    npm run ng build --prod $libraryName # https://github.com/angular/angular-cli/issues/5955
 }
 function packLibrary([String] $libraryName) {
     # Navigate to the dist Path
