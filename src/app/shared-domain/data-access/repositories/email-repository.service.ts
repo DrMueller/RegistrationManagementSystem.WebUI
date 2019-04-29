@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import * as tra from 'projects/
+
 import { RepositoryBaseService } from 'projects/drmueller/data-access/src/lib/areas';
 import { CoreHttpService } from '../../../infrastructure/core-services';
 

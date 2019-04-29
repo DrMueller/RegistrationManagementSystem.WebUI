@@ -19,6 +19,12 @@ export class AppComponent implements OnInit {
     this.securityUserService.initialize(environmentService.adalConfiguration);
   }
 
+  private test(): void {
+  }
+
+  private test1(): void {
+  }
+
   public getRouterOutletState(outlet: any): string {
     return outlet.isActivated ? outlet.activatedRoute : '';
   }

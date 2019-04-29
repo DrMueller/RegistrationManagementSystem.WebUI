@@ -6,14 +6,14 @@ import { ColumnDefinition, ColumnDefinitions } from '../models';
   providedIn: 'root'
 })
 
-export class ColumnDefinitionsBuilderService {
+export class ColDefBuilderService {
   private _definitions: ColumnDefinition[];
 
   constructor() {
     this._definitions = [];
   }
 
-  public withColumnDefinition(name: string, headerDescription: string, propertyName: string): ColumnDefinitionsBuilderService {
+  public withColumnDefinition(name: string, headerDescription: string, propertyName: string): ColDefBuilderService {
     const colDef = new ColumnDefinition(name, headerDescription, propertyName);
     this._definitions.push(colDef);
     return this;

@@ -20,7 +20,7 @@ export const environment = {
   },
   appInfo: {
     appVersion: '1.3.3.7',
-    appName: 'RMS',
-    appDescription: 'Registration Management System'
+    appName: 'CT',
+    appDescription: 'Container Testing System'
   }
 };

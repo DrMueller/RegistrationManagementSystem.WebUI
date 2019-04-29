@@ -26,7 +26,7 @@ export class NgMatExtensionsModule {
     return {
       ngModule: NgMatExtensionsModule,
       providers: [
-        table.ColumnDefinitionsBuilderFactoryService
+        table.ColDefBuilderFactoryService
       ]
     };
   }
